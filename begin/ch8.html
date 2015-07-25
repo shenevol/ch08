@@ -1,0 +1,182 @@
+<html>
+<head>
+	<title>Runners Games!</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".nav-tabs li").click(function(){
+				$(".nav-tabs .active").removeClass("active");
+				$(this).addClass("active");
+				$(".nav-tabs li .selected").removeClass("selected");
+				$(this).find('a').addClass("selected");
+				var tab_active = $(this).find('a').attr("href");
+				$(".tab-content .active").removeClass("active");
+				$(tab_active).addClass("active");
+			});
+			
+			
+
+			function updateTime(){
+				var d = new Date();
+				var hours = d.getHours();
+				var am_pm;
+				if (hours < 12){
+					am_pm = "am";
+				}
+				else{
+					am_pm = "pm";
+				}
+				var minutes = d.getMinutes();
+				var seconds = d.getSeconds();
+				var now = "now is "+hours+":"+minutes+":"+seconds+" "+am_pm; 
+				console.log("now is "+hours+":"+minutes+":"+seconds+" "+am_pm);
+				return now;
+			}
+
+			function getRacer(){
+				console.log("I'm getracer");
+				$.ajax({
+					url:"finishers.xml",
+					cache:false,
+					dataType:"xml",
+					success:function(xml){
+						console.log("I'm success");
+						$("#f_runners").empty();
+						$("#m_runners").empty();
+						$("#all_runners").empty();
+
+						$(xml).find("runner").each(function(){
+							var info = "<li>Name: "+$(this).find("fname").text()+" "+$(this).find("lname").text()+" "+$(this).find("time").text()+"</li>";
+
+							if( $(this).find("gender").text() == "f"){
+								$("#f_runners").appendTo(info);
+							}else if ($(this).find("gender").text() == "m"){
+								$("#m_runners").appendTo(info);
+							}
+
+							$("#all_runners").appendTo(info);
+
+						});
+					}
+				});
+			} 
+			// end of getRacer
+			console.log("I'm getracer 1");
+			$("#updatedTime").html(updateTime());
+			getRacer();
+			console.log("I'm getracer 2");
+		});
+
+
+	</script>
+	<style type="text/css">
+	body{
+		background-color: #000;
+		color: white;
+	}		
+	
+	#main{
+		position:relative; 
+		background: #181818;
+		width: 900px;
+		height: 400px;
+		left:200px;
+	}
+  		
+  	#main>ul>li{
+  		list-style-type: none;
+  		display: inline-block;
+  		padding: 10px;
+  		margin-left:10px;
+  		margin-right: -15px;;
+  		background:#444;
+  		cursor:pointer;
+  	}
+  	
+  	#main>ul>li>a{
+  		color:white;
+  		text-decoration: none;
+  	}
+
+  	#main>ul>li>a.selected{
+  		color:black;
+  	}
+  	#main>ul>li:hover{
+  		background-color: #111;
+  	}
+
+ 	#main>ul>li.active{
+  		background-color: snow;
+  	}
+  	#main>ul>li.selected{
+  		color:#000;
+  	}
+
+
+  	.tab-content{
+  		position: relative;
+  		height: 330px;
+  		background-color: snow;
+  		color:black;
+  		top:-20px;
+  		margin: 20px;
+  	}
+
+  	.tab-pane{
+  		position: absolute;
+  		top:0px;
+  		bottom: 0px;
+  		left: 0px;
+  		right: 0px;
+  		display: none;
+  	}
+
+  	.tab-content .active{
+  		display: block;
+  	}
+
+  	#time{
+  		top:200px;
+  	}
+
+	</style>
+</head>
+<body>
+	<h2>Running race results!</h2>
+	<div id= "main">
+		<ul class="nav-tabs">
+			<li class="active"><a href="#female" class="selected">Female runners</a></li>
+			<li><a href="#male">Male runners</a></li>
+			<li><a href="#all">All runners</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="female" class="tab-pane active">
+				<ul id="f_runners">the result for women!
+					<li>Name:</li>
+					<li>Name:</li>
+					<li>Name:</li>
+				</ul>
+			</div>
+			<div id="male" class="tab-pane">
+				<ul id="m_runners">the result for men!
+					<li>Name:</li>
+					<li>Name:</li>
+					<li>Name:</li>
+				</ul>
+			</div>
+			<div id="all" class="tab-pane">
+				<ul id="all_runners">the result for all runners!
+				</ul>
+			</div>
+		</div> 
+		<!-- end of tab-content -->
+	</div>  
+	<!-- end of main -->
+
+
+	asdfsadfas
+	<div id="time">
+		<h4>Last Updated Time:<div id="updatedTime"></div></h4>
+	</div>
+</body>
+</html>

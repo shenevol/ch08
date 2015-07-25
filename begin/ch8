@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>Runners Games!</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		body{
+			background-color: black;		
+		}
+
+		#main{
+			 background: #181818;
+			 width: 900px;
+
+		}
+
+		#main ul li{
+			float: left;
+			list-style-type: none;
+		}
+
+
+	</style>
+</head>
+<body>
+	<h2>Running race results!</h2>
+	<div id= "main">
+		<ul id="catagory">
+			<li><a href="">Female runners</a></li>
+			<li><a href="">Male runners</a></li>
+		</ul>
+		<div id="female">
+			<ul>the result for women!
+				<li>Name:</li>
+				<li>Name:</li>
+				<li>Name:</li>
+			</ul>
+		</div>
+		<div id="male">
+			<ul>the result for men!
+				<li>Name:</li>
+				<li>Name:</li>
+				<li>Name:</li>
+			</ul>
+		</div>
+	</div> 
+</body>
+</html>
