@@ -43,29 +43,22 @@ $(document).ready(function(){
 
     function getRacer(){
 
-        $.ajax({
-            url: 'finishers.xml',
-            cache: false,
-            dataType: 'xml',
-            success: function(xml){
-                $('#f_runners').empty();
-                $('#m_runners').empty();
-                $('#all_runners').empty();
+        $.getJSON('finishers.json', function(data) {
+            $('#f_runners').empty();
+            $('#m_runners').empty();
+            $('#all_runners').empty();
 
-                $(xml).find('runner').each(function(){
+            data.finishers.forEach(function(finisher) {
+                var html = '<li>Name: ' + finisher.fname + ' ' + finisher.lname + ' ' + finisher.time + '</li>';
 
-                    var info = '<li>Name: ' + $(this).find('fname').text() + ' ' + $(this).find('lname').text() + ' ' + $(this).find('time').text() + '</li>';
+                if (finisher.gender === 'f') {
+                    $('#f_runners').append(html);
+                } else if (finisher.gender === 'm') {
+                    $('#m_runners').append(html);
+                }
 
-                    if( $(this).find('gender').text() === 'f'){
-                        $('#f_runners').append(info);
-                    }else if ($(this).find('gender').text() === 'm'){
-                        $('#m_runners').append(info);
-                    }
-
-                    $('#all_runners').append(info);
-
-                });
-            }
+                $('#all_runners').append(html);
+            });
         });
     }
 
