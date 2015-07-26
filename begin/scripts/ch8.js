@@ -114,7 +114,36 @@ $(document).ready(function(){
 	and click the li of that node
 	*/
 
-	if( location.search == "?status=ok"){
-		alert("successfully add a new runner");
+	$("#addRunner").click(function(){
+		var data = $("#newRunner").serializeArray();
+		$.post($("#newRunner").attr('action'),data,function(json){
+			if(json.status == "fail"){
+				alert(json.message);
+			}
+
+			if(json.status =="true"){
+				alert(json.message);
+				clearInputs();
+			}
+		},"json");
+		
+	});
+
+	function clearInputs(){
+		$("#newRunner:input").each(function(){
+			$(this).val('');
+			//if val has its param, it will replace this value with ''
+			//if val(), it will get the value of this
+		});
 	}
+
+	$("#newRunner").submit(function(){
+		return false;
+		//do not use original form submit method, use ajax 
+		//to pass form to server
+
+	});
+	// if( location.search == "?status=ok"){
+	// 	alert("successfully add a new runner");
+	// }
 }); //end of ready
