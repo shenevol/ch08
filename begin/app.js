@@ -89,7 +89,7 @@ app.post('/finishers', function(req, res) {
     };
     db.finishers.push(finisherData);
 
-    res.sendStatus(200);
+    res.json(db);
 });
 
 console.log('node server listen on port: 3000');

@@ -41,23 +41,27 @@ $(document).ready(function(){
         // return now;
     }
 
+    function setRacerFromData(data) {
+        $('#f_runners').empty();
+        $('#m_runners').empty();
+        $('#all_runners').empty();
+
+        data.finishers.forEach(function(finisher) {
+            var html = '<li>Name: ' + finisher.fname + ' ' + finisher.lname + ' ' + finisher.time + '</li>';
+
+            if (finisher.gender === 'f') {
+                $('#f_runners').append(html);
+            } else if (finisher.gender === 'm') {
+                $('#m_runners').append(html);
+            }
+
+            $('#all_runners').append(html);
+        });
+    }
+
     function getRacer(){
         $.getJSON('http://localhost:3000/finishers', function(data) {
-            $('#f_runners').empty();
-            $('#m_runners').empty();
-            $('#all_runners').empty();
-
-            data.finishers.forEach(function(finisher) {
-                var html = '<li>Name: ' + finisher.fname + ' ' + finisher.lname + ' ' + finisher.time + '</li>';
-
-                if (finisher.gender === 'f') {
-                    $('#f_runners').append(html);
-                } else if (finisher.gender === 'm') {
-                    $('#m_runners').append(html);
-                }
-
-                $('#all_runners').append(html);
-            });
+            setRacerFromData(data);
         });
     }
 
@@ -116,15 +120,9 @@ $(document).ready(function(){
         var newFinisher = $('#newRunner').serializeArray();
         var actionEndpoint = $('#newRunner').attr('action');
 
-        // $.post(actionEndpoint, newFinisher, function(json){
-        //     getRacer();
-        //     clearInputs();
-        // }, 'json');
-
-        $.post(actionEndpoint, newFinisher)
-            .done(function(data) {
-                console.log('asdf')
-            });
+        $.post(actionEndpoint, newFinisher).done(function(data) {
+            setRacerFromData(data);
+        });
 
     });
 
