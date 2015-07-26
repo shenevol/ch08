@@ -73,12 +73,12 @@ app.get('/', function(req, res) {
     res.send(new Date());
 });
 
-app.get('/finishers.json', function(req, res) {
+app.get('/finishers', function(req, res) {
     res.header('Access-Control-Allow-Origin', '*');
     res.json(db);
 });
 
-app.post('/service', function(req, res) {
+app.post('/finishers', function(req, res) {
     res.header('Access-Control-Allow-Origin', '*');
 
     var finisherData = {

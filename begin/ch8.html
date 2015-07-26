@@ -32,10 +32,10 @@
 			</div>
 			<div id="add" class="tab-pane">
 				<ul><h4>All Finisher</h4>
-					<form id="newRunner" name="newRunner" action="http://localhost:3000/service" method="post">
+					<form id="newRunner" name="newRunner" action="http://localhost:3000/finishers" method="post">
 					<li>First Name:  <input type="text" name="fname" placeholder="please enter first name"/></li>
 					<li>Last Name:  <input type="text" name="lname" placeholder="please enter last name"/></li>
-					<li>Gender: 
+					<li>Gender:
 						<select id="gender" name="gender">
 							<option>--please select--</option>
 							<option value="f">Female</option>
@@ -51,17 +51,17 @@
 				<ul id="all_runners">the result for all runners!
 				</ul>
 			</div>
-		</div> 
+		</div>
 		<!-- end of tab-content -->
-	</div>  
+	</div>
 	<!-- end of main -->
-	
+
 	<button id="startUpdate">Start Page Updates</button>
 	<button id="stopUpdate">Stop Page Updates</button>
 	<div>
 		<span id="freq"></span>
 	</div>
-	
+
 	<div id="time">
 		<h4>Last Updated Time:<div id="updatedTime"></div></h4>
 	</div>

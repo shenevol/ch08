@@ -42,8 +42,7 @@ $(document).ready(function(){
     }
 
     function getRacer(){
-
-        $.getJSON('http://localhost:3000/finishers.json', function(data) {
+        $.getJSON('http://localhost:3000/finishers', function(data) {
             $('#f_runners').empty();
             $('#m_runners').empty();
             $('#all_runners').empty();
@@ -114,17 +113,18 @@ $(document).ready(function(){
     */
 
     $('#addRunner').click(function(){
-        var data = $('#newRunner').serializeArray();
-        $.post($('#newRunner').attr('action'), data, function(json){
-            if(json.status === 'fail'){
-                alert(json.message);
-            }
+        var newFinisher = $('#newRunner').serializeArray();
+        var actionEndpoint = $('#newRunner').attr('action');
 
-            if(json.status === 'true'){
-                alert(json.message);
-                clearInputs();
-            }
-        }, 'json');
+        // $.post(actionEndpoint, newFinisher, function(json){
+        //     getRacer();
+        //     clearInputs();
+        // }, 'json');
+
+        $.post(actionEndpoint, newFinisher)
+            .done(function(data) {
+                console.log('asdf')
+            });
 
     });
 
