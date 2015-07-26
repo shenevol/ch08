@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Runners Games!</title>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery-1.6.2.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="styles/ch8.css">
 	<script src="scripts/ch8.js"></script>
 </head>
@@ -32,16 +32,20 @@
 			</div>
 			<div id="add" class="tab-pane">
 				<ul><h4>All Finisher</h4>
+					<form id="newRunner" name="newRunner" action="http://localhost:3000/service" method="post">
 					<li>First Name:  <input type="text" name="fname" placeholder="please enter first name"/></li>
 					<li>Last Name:  <input type="text" name="lname" placeholder="please enter last name"/></li>
 					<li>Gender: 
-						<select name="gender">
+						<select id="gender" name="gender">
+							<option>--please select--</option>
 							<option value="f">Female</option>
 							<option value="m">Male</option>
 						</select>
-					<li>First Name:  <input type="text" name="txtemail" placeholder="please enter first name"/></li>
+					<li>Finish Time: <input type="text" name="finMin"maxlength="2"/> (Minutes) <input type ="text" name="finSec" maxlegnth="2">(Seconds)</li>
+					<li><button id="addRunner" type="submit">Add Runner</button></li>
+					<li><input type="hidden"></li>
+					</form>
 				</ul>
-				
 			</div>
 			<div id="all" class="tab-pane">
 				<ul id="all_runners">the result for all runners!

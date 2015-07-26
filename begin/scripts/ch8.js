@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
 	var freq = 10000;
 	var startUpdate = false;
 
@@ -107,4 +108,13 @@ $(document).ready(function(){
 		
 	getRacer();
 			
+	$('.nav-tabs [href=' +location.hash +']').closest('li').click();
+	/* [href] is attribute select, it will select all nodes under 
+	class .nav-tabs, and find href=location.hash, 
+	and click the li of that node
+	*/
+
+	if( location.search == "?status=ok"){
+		alert("successfully add a new runner");
+	}
 }); //end of ready
