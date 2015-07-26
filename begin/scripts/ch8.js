@@ -43,7 +43,7 @@ $(document).ready(function(){
 
     function getRacer(){
 
-        $.getJSON('finishers.json', function(data) {
+        $.getJSON('http://localhost:3000/finishers.json', function(data) {
             $('#f_runners').empty();
             $('#m_runners').empty();
             $('#all_runners').empty();
